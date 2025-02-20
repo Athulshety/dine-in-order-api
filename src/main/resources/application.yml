@@ -1,0 +1,16 @@
+
+spring:
+  application:
+    name: dine-in-order-api  # Added a space after "name:"
+
+  # DataSource configuration
+  datasource:
+    url: jdbc:mysql://localhost:3306/dine-in-order-api  # Added a space after "url:"
+    username: root
+    password: root
+
+  jpa:
+    show-sql: true  # Added a space after "show-sql:"
+    hibernate:
+      ddl-auto: update  # Added a space after "ddl-auto:"
+
