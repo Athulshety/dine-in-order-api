@@ -3,31 +3,15 @@ package com.project.dine_in_order_api.mapper;
 import com.project.dine_in_order_api.dto.request.RegistrationRequest;
 import com.project.dine_in_order_api.dto.response.UserResponse;
 import com.project.dine_in_order_api.model.User;
+import org.mapstruct.Mapper;
+import org.mapstruct.MappingTarget;
 
-public class UserMapper {
+@Mapper(componentModel = "spring")
+public interface UserMapper {
 
-    public UserResponse mapToUserResponse(User user) {
-        return UserResponse.builder()
-                .userId(user.getUserId())
-                .userName(user.getUserName())
-                .userRole(user.getUserRole())
-                .createdAt(user.getCreatedAt())
-                .lastModifiedAt(user.getLastModifiedAt())
-                .build();
-    }
+     UserResponse mapToUserResponse(User user) ;
 
-    public void mapToUserEntity(RegistrationRequest registrationRequest, User user){
-        user.setUserName(registrationRequest.getUserName());
-        user.setEmail(registrationRequest.getEmail());
-        user.setPassword(registrationRequest.getPassword());
-        user.setPhNo(registrationRequest.getPhNo());
-        user.setUserRole(registrationRequest.getUserRole());
-    }
+     void mapToUserEntity(RegistrationRequest registrationRequest,@MappingTarget User user);
 
-    public void mapToNewUserRequest(RegistrationRequest userRequest, User exUser) {
-        exUser.setUserName(userRequest.getUserName());
-        exUser.setEmail(userRequest.getEmail());
-        exUser.setPhNo(userRequest.getPhNo());
-
-    }
+     void mapToNewUserRequest(RegistrationRequest userRequest,@MappingTarget User exUser) ;
 }
