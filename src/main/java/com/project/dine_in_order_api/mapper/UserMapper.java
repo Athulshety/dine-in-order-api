@@ -14,4 +14,6 @@ public interface UserMapper {
      void mapToUserEntity(RegistrationRequest registrationRequest,@MappingTarget User user);
 
      void mapToNewUserRequest(RegistrationRequest userRequest,@MappingTarget User exUser) ;
+
+
 }
