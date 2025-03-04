@@ -1,6 +1,7 @@
 package com.project.dine_in_order_api.mapper;
 
 import com.project.dine_in_order_api.dto.request.RegistrationRequest;
+import com.project.dine_in_order_api.dto.request.UserRequest;
 import com.project.dine_in_order_api.dto.response.UserResponse;
 import com.project.dine_in_order_api.model.User;
 import org.mapstruct.Mapper;
@@ -13,7 +14,7 @@ public interface UserMapper {
 
      void mapToUserEntity(RegistrationRequest registrationRequest,@MappingTarget User user);
 
-     void mapToNewUserRequest(RegistrationRequest userRequest,@MappingTarget User exUser) ;
+     void mapToNewUserRequest(UserRequest userRequest, @MappingTarget User exUser) ;
 
 
 }
