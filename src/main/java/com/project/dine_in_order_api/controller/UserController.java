@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @AllArgsConstructor
+@RequestMapping("${app.base-url}")
 @Tag(name = "User Controller" ,description = "Collection API endPoint  dealing with user data")
 public class UserController {
     private final UserService userService;
@@ -44,12 +45,36 @@ public class UserController {
         return ResponseBuilder.success(HttpStatus.CREATED, "User Created",response);
     }
     @GetMapping("/user/{userId}")
+    @Operation(
+            summary = "User Registration",
+            description = """
+        This API endpoint is used to register a new user. 
+        The user must provide necessary details along with selecting one of the specified roles.
+        """,
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "User Found"),
+                    @ApiResponse(responseCode = "400", description = "Invalid Input", content = {
+                            @Content(schema = @Schema(implementation = FieldErrorResponse.class))
+                    })
+            })
     public ResponseEntity<ResponseStructure<UserResponse>> findUserById(@PathVariable long userId){
         UserResponse response=userService.findUserById(userId);
         return ResponseBuilder.success(HttpStatus.OK,"User Found",response);
     }
 
     @PutMapping("/users/{userId}")
+    @Operation(
+            summary = "User Registration",
+            description = """
+        This API endpoint is used to register a new user. 
+        The user must provide necessary details along with selecting one of the specified roles.
+        """,
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "User Updated"),
+                    @ApiResponse(responseCode = "400", description = "Invalid Input", content = {
+                            @Content(schema = @Schema(implementation = FieldErrorResponse.class))
+                    })
+            })
    public ResponseEntity<ResponseStructure<UserResponse>> UpdateUserById(@RequestBody UserRequest user,@PathVariable long userId){
          UserResponse response=userService.UpdateUserById(user,userId);
         return ResponseBuilder.success(HttpStatus.OK,"User Update",response);
